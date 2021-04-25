@@ -5,7 +5,7 @@ export const fetchHackersList = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.IS_LOADING, payload: [] });
     const { data } = await axios.get('/api/hackers');
-    dispatch({ type: actionTypes.FETCH_PRODUCTS_SUCCESS, payload: data });
+    dispatch({ type: actionTypes.FETCH_HACKERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: actionTypes.HAS_ERROR,
@@ -21,7 +21,7 @@ export const fetchHackerById = (id) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.IS_LOADING, payload: {} });
     const { data } = await axios.get(`/api/hackers/${id}`);
-    dispatch({ type: actionTypes.FETCH_PRODUCT_SUCCESS, payload: data });
+    dispatch({ type: actionTypes.FETCH_HACKER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: actionTypes.HAS_ERROR,

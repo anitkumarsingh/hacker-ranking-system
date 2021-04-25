@@ -90,8 +90,8 @@ const users = [
 		deviceType: 'Desktop'
 	},
 	{
-		name: 'Anit Kumar Singh',
-		profileLink: 'https://avatars.githubusercontent.com/u/24611589?v=4',
+		name: 'Rocky',
+		profileLink: 'https://randomuser.me/api/portraits/men/76.jpg',
 		location: 'Banglore',
 		challengeSolved: 300,
 		solutionsSubmitted: 450,

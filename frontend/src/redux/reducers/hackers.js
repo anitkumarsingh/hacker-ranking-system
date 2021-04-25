@@ -13,7 +13,7 @@ const hackersReducer = (state = initialState, action) => {
         isLoading: true,
         hackersList: action.payload
       };
-    case actionTypes.FETCH_PRODUCTS_SUCCESS:
+    case actionTypes.FETCH_HACKERS_SUCCESS:
       return { ...state, hackersList: action.payload, isLoading: false };
     case actionTypes.HAS_ERROR:
       return {
@@ -36,7 +36,7 @@ export const hackerReducer = (state = initialState, action) => {
         isLoading: true,
         hackerDetails: action.payload
       };
-    case actionTypes.FETCH_PRODUCT_SUCCESS:
+    case actionTypes.FETCH_HACKER_SUCCESS:
       return { ...state, hackerDetails: action.payload, isLoading: false };
     case actionTypes.HAS_ERROR:
       return {

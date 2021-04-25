@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import hackersReducer from './hackers';
+import hackersReducer, { hackerReducer } from './hackers';
 
 const rootReducer = combineReducers({
-  hackers: hackersReducer
+  hackers: hackersReducer,
+  hacker: hackerReducer
 });
 
 export default rootReducer;

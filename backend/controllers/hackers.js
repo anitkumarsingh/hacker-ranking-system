@@ -3,6 +3,7 @@ import AsyncHandler from 'express-async-handler';
 
 const getHackers = AsyncHandler(async (req, res, next) => {
 	const hackers = await Hackers.find({}).sort({ name: 1 });
+
 	if (hackers) {
 		res.status(200).json(hackers);
 	} else {
@@ -11,7 +12,12 @@ const getHackers = AsyncHandler(async (req, res, next) => {
 });
 
 const getTop3Hackers = AsyncHandler(async (req, res, next) => {
-	const hackers = await Hackers.find().sort({ name: 1 }).limit(3);
+	const hackers = await Hackers.aggregate([
+		// { $unwind: '$cast' },
+		// { $group: { _id: '$cast', solutionsAccepted: { $sum: 1 } } },
+		{ $sort: { solutionsSubmitted: -1 } },
+		{ $limit: 3 }
+	]);
 
 	if (hackers) {
 		res.status(200).json(hackers);

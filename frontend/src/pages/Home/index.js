@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHackersList } from '../../redux/actions/hackers';
-import ProfileCard from '../../components/ProfileCard/Card';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,11 +22,12 @@ const Home = () => {
       ) : error ? (
         <h2>{error}</h2>
       ) : (
+        // <ProfileCard data={hackersList} />
         <Row>
           {hackersList &&
             hackersList.map((hacker) => (
               <Col sm={12} md={6} lg={4} xl={3} key={hacker._id}>
-                <ProfileCard product={hacker} />
+                <ProfileCard data={hacker} />
               </Col>
             ))}
         </Row>
