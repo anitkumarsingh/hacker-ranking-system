@@ -1,0 +1,37 @@
+{
+	"name": "hacker-ranking-sys-backend",
+	"version": "1.0.0",
+	"description": "Backend system for hacker ranking system",
+	"main": "server.js",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"start": "node backend/server.js",
+		"server": "nodemon backend/server.js",
+		"client": "npm start --prefix frontend",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"data:import": "node backend/seeder.js",
+		"data:destroy": "node backend/seeder.js -d"
+	},
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-async-handler": "^1.1.4",
+		"mongoose": "^5.12.5"
+	},
+	"devDependencies": {
+		"concurrently": "^6.0.2",
+		"nodemon": "^2.0.7"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anitkumarsingh/hacker-ranking-system.git"
+	},
+	"author": "Anit kumar",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/anitkumarsingh/hacker-ranking-system/issues"
+	},
+	"homepage": "https://github.com/anitkumarsingh/hacker-ranking-system#readme"
+}
