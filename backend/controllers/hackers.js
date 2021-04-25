@@ -2,7 +2,7 @@ import Hackers from '../models/hackers.js';
 import AsyncHandler from 'express-async-handler';
 
 const getHackers = AsyncHandler(async (req, res, next) => {
-	const hackers = await Hackers.find({});
+	const hackers = await Hackers.find({}).sort({ name: 1 });
 	if (hackers) {
 		res.status(200).json(hackers);
 	} else {
