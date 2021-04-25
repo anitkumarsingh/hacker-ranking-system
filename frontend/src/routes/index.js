@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Home from '../pages/Home';
 import HackerDetails from '../pages/HackerDetails';
+import Login from '../pages/Users/Login';
+import Registration from '../pages/Users/Registration';
 import Header from '../components/Blocks/Header';
 import Footer from '../components/Blocks/Footer';
 
@@ -14,6 +16,8 @@ const Main = () => {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/profile/:id" component={HackerDetails} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Registration} />
         </Switch>
       </Container>
       <Footer />
