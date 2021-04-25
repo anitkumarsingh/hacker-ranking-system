@@ -32,3 +32,19 @@ export const fetchHackerById = (id) => async (dispatch) => {
     });
   }
 };
+
+export const fetchTop3Hackers = () => async (dispatch) => {
+  try {
+    dispatch({ type: actionTypes.IS_LOADING, payload: {} });
+    const { data } = await axios.get(`/api/hackers/top/3`);
+    dispatch({ type: actionTypes.TOP_3_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.HAS_ERROR,
+      payload:
+        error.respose && error.respose.data.message
+          ? error.respose.data.message
+          : error.message
+    });
+  }
+};

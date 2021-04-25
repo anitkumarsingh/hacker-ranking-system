@@ -17,32 +17,10 @@ const ProfileCard = ({ data }) => {
           </Link>
         </div>
         <div className="profile-card-footer">
-          <ul>
-            <li>
-              <a href="#">
-                {' '}
-                <i className="fab fa-facebook-f" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                {' '}
-                <i className="fab fa-twitter" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                {' '}
-                <i className="fab fa-instagram" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                {' '}
-                <i className="fab fa-github" />
-              </a>
-            </li>
-          </ul>
+          {/* <FaFacebookSquare fill="white" width="3em" height="3em" />
+          <FaTwitter fill="white" width="3em" height="3em" />
+          <FaInstagramSquare fill="white" width="3em" height="3em" />
+          <FaGithubSquare fill="white" width="3em" height="3em" /> */}
         </div>
       </div>
     </div>

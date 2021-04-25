@@ -49,3 +49,25 @@ export const hackerReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export const top3HackersReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.IS_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        top3Hackers: action.payload
+      };
+    case actionTypes.TOP_3_USER_SUCCESS:
+      return { ...state, top3Hackers: action.payload, isLoading: false };
+    case actionTypes.HAS_ERROR:
+      return {
+        ...state,
+        fetchFailed: true,
+        isLoading: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};

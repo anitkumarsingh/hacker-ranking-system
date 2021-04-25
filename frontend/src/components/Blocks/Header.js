@@ -17,7 +17,13 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar
+        bg="primary"
+        variant="dark"
+        expand="lg"
+        collapseOnSelect
+        className="header-shadow"
+      >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Mern-Hacker Ranking System</Navbar.Brand>
@@ -29,6 +35,9 @@ const Header = () => {
                 <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/top-3-hackers">
+                    <NavDropdown.Item>Top Hackers</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
@@ -42,11 +51,6 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
-              {/* <LinkContainer to="/login">
-                <Nav.Link>
-                  <FaUser /> Sign In
-                </Nav.Link>
-              </LinkContainer> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

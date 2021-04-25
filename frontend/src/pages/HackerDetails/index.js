@@ -81,7 +81,7 @@ const HackerDetails = ({ match }) => {
           </Col>
           <Col md={3}>
             <Card className="social-container">
-              <Card.Header as="h5">Social Media Status </Card.Header>
+              <Card.Header as="h6">Social Media Status </Card.Header>
               <Card.Body>
                 <Row>
                   <Col md={6}>Followers</Col>
