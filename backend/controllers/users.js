@@ -20,6 +20,34 @@ const authUser = AsyncHandler(async (req, res, next) => {
 	}
 });
 
+// registration of user
+const registerUser = AsyncHandler(async (req, res, next) => {
+	const { name, email, password } = req.body;
+	const userExists = await Users.findOne({ email });
+	if (userExists) {
+		res.status(400);
+		throw new Error('User already exists');
+	}
+	const user = await User.create({
+		name,
+		password,
+		email
+	});
+	if (user) {
+		res.status(201).json({
+			id: user._id,
+			name: user.name,
+			email: user.email,
+			isAdmin: user.isAdmin,
+			token: generateToken(user._id)
+		});
+	} else {
+		res.status(400);
+		throw new Error('Invalid user data');
+	}
+});
+
+// user profile
 const userProfile = AsyncHandler(async (req, res, next) => {
 	const user = await User.findById(req.user._id);
 	if (user) {
@@ -35,4 +63,4 @@ const userProfile = AsyncHandler(async (req, res, next) => {
 	}
 });
 
-export { authUser, userProfile };
+export { authUser, registerUser, userProfile };
