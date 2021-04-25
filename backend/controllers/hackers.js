@@ -10,6 +10,16 @@ const getHackers = AsyncHandler(async (req, res, next) => {
 	}
 });
 
+const getTop3Hackers = AsyncHandler(async (req, res, next) => {
+	const hackers = await Hackers.find().sort({ name: 1 }).limit(3);
+
+	if (hackers) {
+		res.status(200).json(hackers);
+	} else {
+		res.status(404).json({ message: 'Hackers not found!' });
+	}
+});
+
 const getHacker = AsyncHandler(async (req, res, next) => {
 	const hacker = await Hackers.findById(req.params.id);
 	if (hacker) {
@@ -20,4 +30,4 @@ const getHacker = AsyncHandler(async (req, res, next) => {
 	}
 });
 
-export { getHacker, getHackers };
+export { getHacker, getHackers, getTop3Hackers };
