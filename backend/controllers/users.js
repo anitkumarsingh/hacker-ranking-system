@@ -23,6 +23,7 @@ const authUser = AsyncHandler(async (req, res, next) => {
 // registration of user
 const registerUser = AsyncHandler(async (req, res, next) => {
 	const { name, email, password } = req.body;
+	console.log('device', req.headers);
 	const userExists = await Users.findOne({ email });
 	if (userExists) {
 		res.status(400);

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTop3Hackers } from '../../redux/actions/hackers';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import { Col, Row } from 'react-bootstrap';
+import Loader from '../../components/Common/Loader';
+import Message from '../../components/Common/Message';
 
 const TopHackers = () => {
   const dispatch = useDispatch();
@@ -11,19 +13,21 @@ const TopHackers = () => {
     (state) => state.top3Hackers
   );
 
-  console.log('store', top3Hackers);
   useEffect(() => {
     dispatch(fetchTop3Hackers());
   }, [dispatch]);
 
+  if (top3Hackers === undefined) return null;
+
   return (
     <>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : error ? (
-        <h2>{error}</h2>
+        <Message>
+          <h2>{error}</h2>
+        </Message>
       ) : (
-        // <ProfileCard data={hackersList} />
         <Row>
           {top3Hackers &&
             top3Hackers.map((hacker) => (

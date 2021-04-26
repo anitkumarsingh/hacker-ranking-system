@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaHackerrank } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/users';
@@ -26,7 +26,9 @@ const Header = () => {
       >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Mern-Hacker Ranking System</Navbar.Brand>
+            <Navbar.Brand>
+              <FaHackerrank /> Mern-Hacker Ranking System
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

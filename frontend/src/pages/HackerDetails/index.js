@@ -27,6 +27,9 @@ const HackerDetails = ({ match }) => {
   useEffect(() => {
     dispatch(fetchHackerById(match.params.id));
   }, [dispatch, match]);
+
+  if (hackerDetails === undefined) return null;
+
   const {
     profileLink,
     name,
@@ -67,7 +70,7 @@ const HackerDetails = ({ match }) => {
               </Col>
             </Row>
             <ImLocation />
-            {location}
+            Location: {location}
             <div>
               <FaGraduationCap /> Education: {education}
             </div>
@@ -75,7 +78,7 @@ const HackerDetails = ({ match }) => {
               <GiRank3 /> Over All Rank : {overallRank}
             </div>
             <div>
-              <MdDevices /> Device TYpe: {deviceType}
+              <MdDevices /> Device Type: {deviceType}
             </div>
             <hr className="dashed" />
           </Col>
@@ -84,13 +87,13 @@ const HackerDetails = ({ match }) => {
               <Card.Header as="h6">Social Media Status </Card.Header>
               <Card.Body>
                 <Row>
-                  <Col md={6}>Followers</Col>
-                  <Col md={6}>{followers}</Col>
+                  <Col md={8}>Followers</Col>
+                  <Col md={4}>{followers}</Col>
                   <hr className="dashed" />
                 </Row>
                 <Row>
-                  <Col md={6}>Following</Col>
-                  <Col md={6}>{following}</Col>
+                  <Col md={8}>Following</Col>
+                  <Col md={4}>{following}</Col>
                 </Row>
                 <Row>
                   <Col md={12}>
