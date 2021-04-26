@@ -3,6 +3,8 @@ import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHackersList } from '../../redux/actions/hackers';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import Loader from '../../components/Common/Loader';
+import Message from '../../components/Common/Message';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,11 +20,12 @@ const Home = () => {
   return (
     <div>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : error ? (
-        <h2>{error}</h2>
+        <Message variant="danger">
+          <h2>{error}</h2>
+        </Message>
       ) : (
-        // <ProfileCard data={hackersList} />
         <Row>
           {hackersList &&
             hackersList.map((hacker) => (

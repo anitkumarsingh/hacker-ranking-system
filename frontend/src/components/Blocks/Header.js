@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header className="sticky">
       <Navbar
         bg="primary"
         variant="dark"
