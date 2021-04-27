@@ -14,7 +14,7 @@ const users = [
 		following: 55,
 		competitivePercentitle: {
 			dataStructures: 79.1,
-			algorithms: 0.0,
+			algorithms: 20.0,
 			'c++': 89.2,
 			java: 55.8,
 			python: 88.6,
@@ -37,7 +37,7 @@ const users = [
 		following: 554,
 		competitivePercentitle: {
 			dataStructures: 79.1,
-			algorithms: 0.0,
+			algorithms: 20.0,
 			'c++': 29.2,
 			java: 55.8,
 			python: 88.6,
@@ -60,7 +60,7 @@ const users = [
 		following: 55,
 		competitivePercentitle: {
 			dataStructures: 79.1,
-			algorithms: 0.0,
+			algorithms: 20.0,
 			'c++': 95.2,
 			java: 55.8,
 			python: 88.6,
@@ -83,7 +83,7 @@ const users = [
 		following: 5755,
 		competitivePercentitle: {
 			dataStructures: 79.1,
-			algorithms: 0.0,
+			algorithms: 10.0,
 			'c++': 49.2,
 			java: 55.8,
 			python: 88.6,
@@ -106,7 +106,7 @@ const users = [
 		following: 55,
 		competitivePercentitle: {
 			dataStructures: 79.1,
-			algorithms: 0.0,
+			algorithms: 70.0,
 			'c++': 89.2,
 			java: 55.8,
 			python: 88.6,

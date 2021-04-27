@@ -16,9 +16,12 @@ import { ImLocation } from 'react-icons/im';
 import { FaGraduationCap } from 'react-icons/fa';
 import { GiRank3 } from 'react-icons/gi';
 import { MdDevices } from 'react-icons/md';
+import CompetitivePercentileBar from '../../components/Charts/CompetitivePercentileBar';
 
 const HackerDetails = ({ match }) => {
   const dispatch = useDispatch();
+  let languages = [];
+  let languagesPercentitle = [];
   const { isLoading, error, hackerDetails } = useSelector(
     (state) => state.hacker
   );
@@ -45,6 +48,16 @@ const HackerDetails = ({ match }) => {
     deviceType,
     education
   } = hackerDetails;
+
+  if (hackerDetails && competitivePercentitle) {
+    const objectArray = Object.entries(competitivePercentitle);
+    objectArray.forEach(([key, value]) => {
+      languages.push(key);
+      languagesPercentitle.push(value);
+    });
+  }
+
+  console.log('aasadaad', languagesPercentitle, languages);
   return (
     <div className="py-5">
       {isLoading ? (
@@ -134,6 +147,13 @@ const HackerDetails = ({ match }) => {
                         <strong>Overall Rank</strong> {overallRank}
                       </Col>
                     </Row>
+                    <Col md={12}>
+                      <hr className="dashed" />
+                      <CompetitivePercentileBar
+                        labelData={languages}
+                        value={languagesPercentitle}
+                      />
+                    </Col>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
