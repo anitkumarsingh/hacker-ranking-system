@@ -6,6 +6,7 @@ import HackerDetails from '../pages/HackerDetails';
 import Login from '../pages/Users/Login';
 import Registration from '../pages/Users/Registration';
 import Top3Hackers from '../pages/TopHackers';
+import UserProfile from '../pages/Users/Profile';
 import Header from '../components/Blocks/Header';
 import Footer from '../components/Blocks/Footer';
 
@@ -20,6 +21,7 @@ const Main = () => {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Registration} />
           <Route path="/top-3-hackers" component={Top3Hackers} />
+          <Route path="/user/profile" component={UserProfile} />
         </Switch>
       </Container>
       <Footer />

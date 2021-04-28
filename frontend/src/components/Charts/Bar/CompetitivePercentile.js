@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const CompetitivePercentileBar = ({ labelData, value }) => {
+const CompetitivePercentile = ({ labelData, value }) => {
   const data = {
     labels: labelData,
     datasets: [
@@ -44,4 +44,4 @@ const CompetitivePercentileBar = ({ labelData, value }) => {
   return <Bar data={data} options={options} />;
 };
 
-export default CompetitivePercentileBar;
+export default CompetitivePercentile;

@@ -35,7 +35,7 @@ const Header = () => {
             <Nav className="ml-auto">
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
-                  <LinkContainer to="/profile">
+                  <LinkContainer to="/user/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to="/top-3-hackers">

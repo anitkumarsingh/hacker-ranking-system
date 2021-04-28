@@ -16,7 +16,7 @@ import { ImLocation } from 'react-icons/im';
 import { FaGraduationCap } from 'react-icons/fa';
 import { GiRank3 } from 'react-icons/gi';
 import { MdDevices } from 'react-icons/md';
-import CompetitivePercentileBar from '../../components/Charts/CompetitivePercentileBar';
+import CompetitivePercentile from '../../components/Charts/Bar/CompetitivePercentile';
 
 const HackerDetails = ({ match }) => {
   const dispatch = useDispatch();
@@ -149,7 +149,7 @@ const HackerDetails = ({ match }) => {
                     </Row>
                     <Col md={12}>
                       <hr className="dashed" />
-                      <CompetitivePercentileBar
+                      <CompetitivePercentile
                         labelData={languages}
                         value={languagesPercentitle}
                       />

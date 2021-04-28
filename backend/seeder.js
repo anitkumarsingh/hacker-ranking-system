@@ -4,6 +4,8 @@ import Hacker from './models/hackers.js';
 import hackerData from './mocks/hackers.js';
 import User from './models/users.js';
 import UserData from './mocks/users.js';
+import Settings from './models/settings.js';
+import SettingData from './mocks/settings.js';
 
 dotenv.config();
 
@@ -13,8 +15,14 @@ const ImportData = async () => {
 	try {
 		await Hacker.deleteMany();
 		await User.deleteMany();
+		await Settings.deleteMany();
 		await Hacker.insertMany(hackerData);
-		await User.insertMany(UserData);
+		const insertDataIntoUserTable = await User.insertMany(UserData);
+		const adminId = insertDataIntoUserTable[0]._id;
+		const sampleData = UserData.map((setting) => {
+			return { ...setting, user: adminId };
+		});
+		await Settings.insertMany(sampleData);
 		console.log('Data Imported!');
 		process.exit();
 	} catch (error) {
