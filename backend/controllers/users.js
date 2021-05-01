@@ -21,7 +21,7 @@ const authUser = AsyncHandler(async (req, res, next) => {
 });
 
 // registration of user
-const registerUser = AsyncHandler(async (req, res, next) => {
+const registerUser = AsyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 	console.log('device', req.headers);
 	const userExists = await Users.findOne({ email });
@@ -49,7 +49,7 @@ const registerUser = AsyncHandler(async (req, res, next) => {
 });
 
 // user profile
-const userProfile = AsyncHandler(async (req, res, next) => {
+const userProfile = AsyncHandler(async (req, res) => {
 	const user = await User.findById(req.user._id);
 	if (user) {
 		res.json({
@@ -67,15 +67,15 @@ const userProfile = AsyncHandler(async (req, res, next) => {
 // Get all users
 const getUsers = AsyncHandler(async (req, res, next) => {
 	const user = await User.find({});
-	const activeUsers = user.find((u) => u.active === true);
-	const registratedUsers = await User.find({ active: false }).countDocuments();
-	console.log('ac', user);
+	const registeredUsers = await User.find({ isRegisted: true }).countDocuments();
+	const activeUsers = await User.find({ isActive: true }).countDocuments();
 	if (user) {
 		res.status(200).json({
 			users: user,
 			success: true,
-			registratedUsers,
-			activeUsers: activeUsers
+			total: user.length,
+			registeredUsers,
+			activeUsers
 		});
 	} else {
 		res.status(404);

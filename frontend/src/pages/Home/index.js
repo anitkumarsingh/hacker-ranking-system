@@ -12,7 +12,10 @@ const Home = () => {
     (state) => state.hackers
   );
 
-  console.log('store', hackersList);
+  console.log(
+    'store',
+    useSelector((state) => state)
+  );
   useEffect(() => {
     dispatch(fetchHackersList());
   }, [dispatch]);

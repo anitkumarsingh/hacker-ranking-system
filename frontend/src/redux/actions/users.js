@@ -7,7 +7,10 @@ const {
   USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS
+  USER_REGISTER_SUCCESS,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAILED,
+  IS_LOADING
 } = actionTypes;
 
 export const login = (email, password) => async (dispatch) => {
@@ -86,6 +89,22 @@ export const register = (name, email, password) => async (dispatch) => {
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: actionTypes.IS_LOADING, payload: [] });
+    const { data } = await axios.get('/api/users');
+    dispatch({ type: actionTypes.FETCH_USERS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.HAS_ERROR,
+      payload:
+        error.respose && error.respose.data.message
+          ? error.respose.data.message
           : error.message
     });
   }

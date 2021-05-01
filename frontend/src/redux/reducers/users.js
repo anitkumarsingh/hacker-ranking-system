@@ -7,7 +7,10 @@ const {
   USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS
+  USER_REGISTER_SUCCESS,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAILED,
+  IS_LOADING
 } = actionTypes;
 
 export const userLoginReducer = (state = {}, action) => {
@@ -35,6 +38,19 @@ export const userRegisterReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case USER_LOGOUT:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const fetchUsersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case IS_LOADING:
+      return { loading: true };
+    case FETCH_USERS_SUCCESS:
+      return { loading: false, users: action.payload };
+    case FETCH_USERS_FAILED:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

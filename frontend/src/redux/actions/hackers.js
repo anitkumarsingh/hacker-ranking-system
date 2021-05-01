@@ -5,6 +5,7 @@ export const fetchHackersList = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.IS_LOADING, payload: [] });
     const { data } = await axios.get('/api/hackers');
+    console.log('as', data);
     dispatch({ type: actionTypes.FETCH_HACKERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
