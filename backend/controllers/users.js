@@ -64,4 +64,23 @@ const userProfile = AsyncHandler(async (req, res, next) => {
 	}
 });
 
-export { authUser, registerUser, userProfile };
+// Get all users
+const getUsers = AsyncHandler(async (req, res, next) => {
+	const user = await User.find({});
+	const activeUsers = user.find((u) => u.active === true);
+	const registratedUsers = await User.find({ active: false }).countDocuments();
+	console.log('ac', user);
+	if (user) {
+		res.status(200).json({
+			users: user,
+			success: true,
+			registratedUsers,
+			activeUsers: activeUsers
+		});
+	} else {
+		res.status(404);
+		throw new Error('Users not found');
+	}
+});
+
+export { authUser, registerUser, userProfile, getUsers };

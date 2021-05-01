@@ -12,6 +12,7 @@ const getHackers = AsyncHandler(async (req, res, next) => {
 });
 
 const getTop3Hackers = AsyncHandler(async (req, res, next) => {
+	console.log('req', req.query.pageSize);
 	const hackers = await Hackers.aggregate([
 		// { $unwind: '$cast' },
 		// { $group: { _id: '$cast', solutionsAccepted: { $sum: 1 } } },
@@ -26,6 +27,10 @@ const getTop3Hackers = AsyncHandler(async (req, res, next) => {
 	}
 });
 
+const getPercentileIncPlusPlus = AsyncHandler(async (req, res, next) => {
+	const hackers = await Hackers.find({}).sort({ competitivePercentitle: -1 });
+});
+// GET hacker details by Id
 const getHacker = AsyncHandler(async (req, res, next) => {
 	const hacker = await Hackers.findById(req.params.id);
 	if (hacker) {

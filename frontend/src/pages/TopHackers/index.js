@@ -29,6 +29,10 @@ const TopHackers = () => {
         </Message>
       ) : (
         <Row>
+          <Col md={2}>
+            <h5>Top 3 Hackers</h5>
+          </Col>
+
           {top3Hackers &&
             top3Hackers.map((hacker) => (
               <Col sm={12} md={6} lg={4} xl={3} key={hacker._id}>

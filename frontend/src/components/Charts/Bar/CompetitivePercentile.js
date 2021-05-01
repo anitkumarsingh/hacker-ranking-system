@@ -1,12 +1,12 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const CompetitivePercentile = ({ labelData, value }) => {
+const CompetitivePercentile = ({ labelData, value, heading }) => {
   const data = {
     labels: labelData,
     datasets: [
       {
-        label: 'Programming Language Percentitle',
+        label: `${heading ? heading : ' Programming Language Percentitle'}`,
         data: value,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)'
