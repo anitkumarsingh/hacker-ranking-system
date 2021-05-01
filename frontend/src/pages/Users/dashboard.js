@@ -5,53 +5,59 @@ import CplusPlusChart from '../../components/Charts/Bar/CompetitivePercentile';
 import DeviceTypeChart from '../../components/Charts/Doughnut/Doughnut';
 import { Col, Row } from 'react-bootstrap';
 import UserTypes from '../../components/Charts/Polar/Polar';
+import RadarChart from '../../components/Charts/Radar';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  let hackers = [];
-  let hackersCPlusPlus = [];
-  let deviceType = ['Laptop', 'Tablet', 'Phone'];
-  let deviceTypeUsersCount = [];
-  let laptopCount = 0;
-  let tabletCount = 0;
-  let phoneCount = 0;
-
-  const { isLoading, error, hackersList } = useSelector(
-    (state) => state.hackers
-  );
-
-  console.log(
-    'store hackers',
-    useSelector((state) => state)
-  );
 
   useEffect(() => {
     dispatch(fetchHackersList());
   }, [dispatch]);
 
-  if (hackersList && hackersList.length > 0) {
-    hackersCPlusPlus = hackersList
+  const { isLoading, error, hackersTypes } = useSelector(
+    (state) => state.hackers
+  );
+  let hackersName = [];
+  let hackersCPlusPlus = [];
+  let deviceType = ['Laptop', 'Tablet', 'Phone'];
+  let deviceTypeUsersCount = [];
+  let recentlyUpdatedUsers = [];
+  let recentlyUpdatedDates = [];
+
+  if (!hackersTypes) return null;
+  const {
+    phoneUsers,
+    laptopUsers,
+    tabletUsers,
+    recentlyUpdatedHackers,
+    hackers
+  } = hackersTypes;
+  deviceTypeUsersCount = [laptopUsers, tabletUsers, phoneUsers];
+  console.log('store hackers', recentlyUpdatedHackers);
+
+  if (hackers && hackers.length > 0) {
+    hackersCPlusPlus = hackers
       .map((e) => e.competitivePercentitle['c++'])
       .sort(function (a, b) {
         return b - a;
       });
 
-    hackers = hackersList.map((hack) => hack.name);
-    for (var i = 0; i < hackersList.length; i++) {
-      if (hackersList[i].deviceType === 'Laptop') laptopCount++;
-      else if (hackersList[i].deviceType === 'Phone') phoneCount++;
-      else if (hackersList[i].deviceType === 'Tablet') tabletCount++;
-    }
-    deviceTypeUsersCount = [laptopCount, phoneCount, tabletCount];
+    hackersName = hackers.map((hack) => hack.name);
   }
-  console.log('asda', laptopCount, phoneCount, tabletCount);
+  if (recentlyUpdatedHackers && recentlyUpdatedHackers.length > 0) {
+    recentlyUpdatedUsers = recentlyUpdatedHackers.map((ele) => ele.name);
+    recentlyUpdatedDates = recentlyUpdatedHackers.map(
+      (d) => new Date(d.updatedAt)
+    );
+  }
+  console.log('recer', recentlyUpdatedDates, recentlyUpdatedUsers);
   return (
     <div>
       <Row>
         <Col md={8}>
           <h4>Percentile in C++ </h4>
           <CplusPlusChart
-            labelData={hackers}
+            labelData={hackersName}
             value={hackersCPlusPlus}
             heading="Percentile in C++"
           />
@@ -66,8 +72,16 @@ const Dashboard = () => {
         </Col>
         <Col md={12}>
           <br />
-          <h4>Device Type </h4>
+          <h4>User Type </h4>
           <UserTypes />
+        </Col>
+        <Col md={12}>
+          <h4>Recent Updates</h4>
+          <RadarChart
+            labelData={recentlyUpdatedDates}
+            value={recentlyUpdatedUsers}
+            heading="Recent"
+          />
         </Col>
       </Row>
     </div>

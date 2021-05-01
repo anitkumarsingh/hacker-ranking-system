@@ -1,7 +1,7 @@
 import Hackers from '../models/hackers.js';
-import AsyncHandler from 'express-async-handler';
+import asyncHandler from 'express-async-handler';
 
-const getHackers = AsyncHandler(async (req, res) => {
+const getHackers = asyncHandler(async (req, res) => {
 	const hackers = await Hackers.find({}).sort({ name: 1 });
 	const laptopUsers = await Hackers.find({ deviceType: 'Laptop' }).countDocuments();
 	const tabletUsers = await Hackers.find({ deviceType: 'Tablet' }).countDocuments();
@@ -25,8 +25,7 @@ const getHackers = AsyncHandler(async (req, res) => {
 	}
 });
 
-const getTop3Hackers = AsyncHandler(async (req, res, next) => {
-	console.log('req', req.params.pageSize);
+const getTop3Hackers = asyncHandler(async (req, res, next) => {
 	const hackers = await Hackers.aggregate([
 		// { $unwind: '$cast' },
 		// { $group: { _id: '$cast', solutionsAccepted: { $sum: 1 } } },
@@ -41,11 +40,11 @@ const getTop3Hackers = AsyncHandler(async (req, res, next) => {
 	}
 });
 
-const getPercentileIncPlusPlus = AsyncHandler(async (req, res, next) => {
+const getPercentileIncPlusPlus = asyncHandler(async (req, res, next) => {
 	const hackers = await Hackers.find({}).sort({ competitivePercentitle: -1 });
 });
 // GET hacker details by Id
-const getHacker = AsyncHandler(async (req, res, next) => {
+const getHacker = asyncHandler(async (req, res, next) => {
 	const hacker = await Hackers.findById(req.params.id);
 	if (hacker) {
 		res.status(200).json(hacker);
@@ -54,5 +53,21 @@ const getHacker = AsyncHandler(async (req, res, next) => {
 		throw new Error({ message: 'Hacker detail not found!' });
 	}
 });
+const updateHackerDetails = asyncHandler(async (req, res) => {
+	const hacker = await Hackers.findById(req.params.id);
+	if (hacker) {
+		//Only these field are allowed to be edited by hacker
+		hacker.name = req.body.name;
+		hacker.education = req.body.education;
+		hacker.location = req.body.location;
+		hacker.profileLink = req.body.profileLink;
+		res
+			.status(200)
+			.json({ hacker, message: 'Profile updated successfully', success: true });
+	} else {
+		res.status(404);
+		throw new Error({ message: 'Hacker detail not found!' });
+	}
+});
 
-export { getHacker, getHackers, getTop3Hackers };
+export { getHacker, getHackers, getTop3Hackers, updateHackerDetails };

@@ -1,9 +1,9 @@
 import Users from '../models/users.js';
-import AsyncHandler from 'express-async-handler';
+import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
 import User from '../models/users.js';
 
-const authUser = AsyncHandler(async (req, res, next) => {
+const authUser = asyncHandler(async (req, res, next) => {
 	const { email, password } = req.body;
 	const user = await Users.findOne({ email });
 	if (user && (await user.matchPassword(password))) {
@@ -21,7 +21,7 @@ const authUser = AsyncHandler(async (req, res, next) => {
 });
 
 // registration of user
-const registerUser = AsyncHandler(async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 	console.log('device', req.headers);
 	const userExists = await Users.findOne({ email });
@@ -49,7 +49,7 @@ const registerUser = AsyncHandler(async (req, res) => {
 });
 
 // user profile
-const userProfile = AsyncHandler(async (req, res) => {
+const userProfile = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.user._id);
 	if (user) {
 		res.json({
@@ -65,7 +65,7 @@ const userProfile = AsyncHandler(async (req, res) => {
 });
 
 // Get all users
-const getUsers = AsyncHandler(async (req, res, next) => {
+const getUsers = asyncHandler(async (req, res, next) => {
 	const user = await User.find({});
 	const registeredUsers = await User.find({ isRegisted: true }).countDocuments();
 	const activeUsers = await User.find({ isActive: true }).countDocuments();

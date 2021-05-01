@@ -17,6 +17,7 @@ const hackersReducer = (state = initialState, action) => {
       return {
         ...state,
         hackersList: action.payload.hackers,
+        hackersTypes: action.payload,
         isLoading: false
       };
     case actionTypes.HAS_ERROR:

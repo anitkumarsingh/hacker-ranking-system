@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const hackerModel = mongoose.Schema(
+const hackerSchema = mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -51,5 +51,5 @@ const hackerModel = mongoose.Schema(
 	{ timestamps: true }
 );
 
-const Hacker = mongoose.model('Hacker', hackerModel);
+const Hacker = mongoose.model('Hacker', hackerSchema);
 export default Hacker;

@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/users.js';
-import AsyncHandler from 'express-async-handler';
+import asyncHandler from 'express-async-handler';
 
-const protect = AsyncHandler(async (req, res, next) => {
+const auth = asyncHandler(async (req, res, next) => {
 	let token;
 	if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
 		try {
@@ -21,6 +21,13 @@ const protect = AsyncHandler(async (req, res, next) => {
 		res.status(401);
 		throw new Error('Not authorized!');
 	}
-	next();
 });
-export { protect };
+
+const isAdmin = asyncHandler(async (req, res, next) => {
+	if (req.user && req.user.isAdmin) {
+		next();
+	} else {
+		res.status(401).json({ message: 'Not Authorized', success: false });
+	}
+});
+export { auth, isAdmin };
