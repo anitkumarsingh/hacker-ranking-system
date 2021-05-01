@@ -5,7 +5,7 @@ import CplusPlusChart from '../../components/Charts/Bar/CompetitivePercentile';
 import DeviceTypeChart from '../../components/Charts/Doughnut/Doughnut';
 import { Col, Row } from 'react-bootstrap';
 import UserTypes from '../../components/Charts/Polar/Polar';
-import RadarChart from '../../components/Charts/Radar';
+import HackerTable from '../../components/Table/RecentUpdatedHackers';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -45,10 +45,8 @@ const Dashboard = () => {
     hackersName = hackers.map((hack) => hack.name);
   }
   if (recentlyUpdatedHackers && recentlyUpdatedHackers.length > 0) {
-    recentlyUpdatedUsers = recentlyUpdatedHackers.map((ele) => ele.name);
-    recentlyUpdatedDates = recentlyUpdatedHackers.map(
-      (d) => new Date(d.updatedAt)
-    );
+    recentlyUpdatedHackers.map((ele) => recentlyUpdatedUsers.push(ele.name));
+    recentlyUpdatedHackers.map((d) => recentlyUpdatedDates.push(d.updatedAt));
   }
   console.log('recer', recentlyUpdatedDates, recentlyUpdatedUsers);
   return (
@@ -77,11 +75,7 @@ const Dashboard = () => {
         </Col>
         <Col md={12}>
           <h4>Recent Updates</h4>
-          <RadarChart
-            labelData={recentlyUpdatedDates}
-            value={recentlyUpdatedUsers}
-            heading="Recent"
-          />
+          <HackerTable data={recentlyUpdatedHackers} />
         </Col>
       </Row>
     </div>

@@ -13,10 +13,10 @@ connectDB();
 
 const ImportData = async () => {
 	try {
-		await Hacker.deleteMany();
+		// await Hacker.deleteMany();
 		await User.deleteMany();
 		await Settings.deleteMany();
-		await Hacker.insertMany(hackerData);
+		// await Hacker.insertMany(hackerData);
 		const insertDataIntoUserTable = await User.insertMany(UserData);
 		const adminId = insertDataIntoUserTable[0]._id;
 		const sampleData = UserData.map((setting) => {
@@ -33,8 +33,9 @@ const ImportData = async () => {
 
 const DestoryData = async () => {
 	try {
-		await Hacker.deleteMany();
+		// await Hacker.deleteMany();
 		await User.deleteMany();
+		await Settings.deleteMany();
 		console.log('Data Destred!!!');
 		process.exit();
 	} catch (error) {

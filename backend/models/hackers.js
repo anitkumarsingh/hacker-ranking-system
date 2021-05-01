@@ -8,7 +8,6 @@ const hackerSchema = mongoose.Schema(
 		},
 		profileLink: {
 			type: String,
-			required: true,
 			unique: true
 		},
 		location: {

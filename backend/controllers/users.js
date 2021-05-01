@@ -12,6 +12,7 @@ const authUser = asyncHandler(async (req, res, next) => {
 			name: user.name,
 			email: user.email,
 			isAdmin: user.isAdmin,
+			hacker: user.hacker,
 			token: generateToken(user._id)
 		});
 	} else {
@@ -23,7 +24,7 @@ const authUser = asyncHandler(async (req, res, next) => {
 // registration of user
 const registerUser = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
-	console.log('device', req.headers);
+	// console.log('device', req.headers);
 	const userExists = await Users.findOne({ email });
 	if (userExists) {
 		res.status(400);

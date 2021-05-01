@@ -30,7 +30,8 @@ const userSchema = mongoose.Schema(
 			type: Boolean,
 			required: true,
 			default: true
-		}
+		},
+		hacker: { type: mongoose.Schema.ObjectId, ref: 'Hacker' }
 	},
 	{ timestamps: true }
 );
