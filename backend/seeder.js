@@ -33,7 +33,7 @@ const ImportData = async () => {
 
 const DestoryData = async () => {
 	try {
-		// await Hacker.deleteMany();
+		await Hacker.deleteMany();
 		await User.deleteMany();
 		await Settings.deleteMany();
 		console.log('Data Destred!!!');

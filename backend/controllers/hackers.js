@@ -9,33 +9,6 @@ const getHackers = asyncHandler(async (req, res) => {
 	const recentlyUpdatedHackerDetails = await Hackers.find({})
 		.sort({ updatedAt: -1 })
 		.limit(10);
-	// const recentlyUpdatedHackerDetails = await Hackers.aggregate([
-	// 	[
-	// 		{
-	// 			$project: {
-	// 				name: '$name',
-	// 				createdAt: {
-	// 					$dateToString: {
-	// 						format: '%d-%m-%Y',
-	// 						date: '$createdAt'
-	// 					}
-	// 				},
-	// 				updatedAt: {
-	// 					$dateToString: {
-	// 						format: '%d-%m-%Y',
-	// 						date: '$updatedAt'
-	// 					}
-	// 				}
-	// 			}
-	// 		},
-	// 		{
-	// 			$sort: { updatedAt: -1 }
-	// 		},
-	// 		{
-	// 			$limit: 10
-	// 		}
-	// 	]
-	// ]);
 
 	if (hackers) {
 		res.status(200).json({
@@ -93,7 +66,6 @@ const getHacker = asyncHandler(async (req, res, next) => {
 });
 const updateHackerDetails = asyncHandler(async (req, res) => {
 	const hacker = await Hackers.findById(req.params.id);
-	console.log('asa', hacker);
 	if (hacker) {
 		//Only these field are allowed to be edited by hacker
 		hacker.name = req.body.name || hacker.name;

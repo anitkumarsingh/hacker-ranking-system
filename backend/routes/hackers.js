@@ -12,6 +12,5 @@ const router = express.Router();
 router.route('/').get(getHackers);
 router.route('/:id').get(getHacker).put(auth, updateHackerDetails);
 router.route('/top/3').get(getTop3Hackers);
-// router.route('/rank').get(getTop3Hackers);
 
 export default router;
