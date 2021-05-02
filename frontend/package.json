@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -44,8 +45,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "2.2.1",
-    "redux-devtools-extension": "^2.13.9"
+    "prettier": "2.2.1"
   },
   "engines": {
     "node": "14.x"
