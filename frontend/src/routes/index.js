@@ -8,6 +8,7 @@ import Registration from '../pages/Users/Registration';
 import Top3Hackers from '../pages/TopHackers';
 import UserProfile from '../pages/Users/Profile';
 import AdminDashboard from '../pages/Users/dashboard';
+import DeploymentDoc from '../pages/Documents/DeploymentDoc';
 import Header from '../components/Blocks/Header';
 import Footer from '../components/Blocks/Footer2';
 
@@ -24,6 +25,7 @@ const Main = () => {
           <Route path="/top-3-hackers" component={Top3Hackers} />
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/admin/dashboard" component={AdminDashboard} />
+          <Route path="/doc" component={DeploymentDoc} />
         </Switch>
       </Container>
       <Footer />

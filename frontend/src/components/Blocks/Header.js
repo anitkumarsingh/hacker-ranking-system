@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { FaUser, FaHackerrank } from 'react-icons/fa';
+import { FcDocument } from 'react-icons/fc';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/users';
@@ -33,6 +34,12 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
+              <LinkContainer to="/doc">
+                <Nav.Link>
+                  <FcDocument />
+                  Document
+                </Nav.Link>
+              </LinkContainer>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/user/profile">

@@ -12,16 +12,12 @@ const Home = () => {
     (state) => state.hackers
   );
 
-  console.log(
-    'store',
-    useSelector((state) => state)
-  );
   useEffect(() => {
     dispatch(fetchHackersList());
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="py-5">
       {isLoading ? (
         <Loader />
       ) : error ? (

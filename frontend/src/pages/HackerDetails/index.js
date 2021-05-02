@@ -26,7 +26,6 @@ const HackerDetails = ({ match }) => {
     (state) => state.hacker
   );
 
-  console.log('store details', hackerDetails);
   useEffect(() => {
     dispatch(fetchHackerById(match.params.id));
   }, [dispatch, match]);
@@ -57,7 +56,6 @@ const HackerDetails = ({ match }) => {
     });
   }
 
-  console.log('aasadaad', languagesPercentitle, languages);
   return (
     <div className="py-5">
       {isLoading ? (
