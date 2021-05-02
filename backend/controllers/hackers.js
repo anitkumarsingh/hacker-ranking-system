@@ -28,6 +28,27 @@ const getHackers = asyncHandler(async (req, res) => {
 const getTop3Hackers = asyncHandler(async (req, res, next) => {
 	// const hackers = await Hackers.find({});
 	// let solAccepted = [];
+	// const finalDocs = await hackers
+	// 	.map((h) => {
+	// 		let calculatedRank =
+	// 			Math.floor(
+	// 				hackers.length *
+	// 					(100 -
+	// 						(h.competitivePercentitle['c++'] +
+	// 							h.competitivePercentitle['javascript'] +
+	// 							h.competitivePercentitle['python'] +
+	// 							h.competitivePercentitle['java'] +
+	// 							h.competitivePercentitle['dataStructures'] +
+	// 							h.competitivePercentitle['algorithms'] +
+	// 							h.competitivePercentitle['html']) /
+	// 							7)
+	// 			) / 100;
+	// 		return { ...h, calculatedRank };
+	// 	})
+	// 	.sort(function (a, b) {
+	// 		b - a;
+	// 	});
+
 	// hackers.forEach((e) => solAccepted.push(e.solutionsAccepted));
 
 	// const sortSolAccepted = solAccepted.slice().sort(function (a, b) {
@@ -36,7 +57,7 @@ const getTop3Hackers = asyncHandler(async (req, res, next) => {
 	// const calculateRank = solAccepted.map(function (v) {
 	// 	return sortSolAccepted.indexOf(v) + 1;
 	// });
-	// console.log('rank', calculateRank, solAccepted, sortSolAccepted);
+
 	const hackers = await Hackers.aggregate([
 		// { $unwind: '$cast' },
 		// { $group: { _id: '$cast', solutionsAccepted: { $sum: 1 } } },

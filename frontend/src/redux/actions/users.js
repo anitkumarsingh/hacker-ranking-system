@@ -7,10 +7,10 @@ const {
   USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILED,
-  IS_LOADING
+  USER_REGISTER_SUCCESS
+  // FETCH_USERS_SUCCESS,
+  // FETCH_USERS_FAILED,
+  // IS_LOADING
 } = actionTypes;
 
 export const login = (email, password) => async (dispatch) => {

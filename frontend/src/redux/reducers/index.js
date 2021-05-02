@@ -5,6 +5,7 @@ import {
   userRegisterReducer,
   fetchUsersReducer
 } from './users';
+import { fetchWebsiteSettings } from './settings';
 
 const rootReducer = combineReducers({
   hackers: hackersReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   top3Hackers: top3HackersReducer,
-  users: fetchUsersReducer
+  users: fetchUsersReducer,
+  settings: fetchWebsiteSettings
 });
 
 export default rootReducer;

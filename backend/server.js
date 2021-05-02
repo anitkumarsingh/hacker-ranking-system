@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import hackersRouter from './routes/hackers.js';
 import usersRouter from './routes/users.js';
+import settingRouter from './routes/settings.js';
 import dotenv from 'dotenv';
 import connectDB from './config/index.js';
 import { notFound, errorHandler } from './middleware/index.js';
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use('/api/hackers', hackersRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/web/setting', settingRouter);
 
 const __dirname = path.resolve();
 

@@ -22,7 +22,7 @@ const Header = () => {
         variant="dark"
         expand="lg"
         collapseOnSelect
-        className="header-shadow"
+        className="header-shadow theme-nav"
       >
         <Container>
           <LinkContainer to="/">

@@ -12,13 +12,21 @@ const Footer2 = () => {
               <a href="#/">
                 <FaHackerrank />
               </a>
-              <a href="#/">
+              <a
+                href="http://www.hackerearth.com/@anitkumar123"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <SiHackerearth />
               </a>
               <a href="#/">
                 <FaLinkedinIn />
               </a>
-              <a href="#/">
+              <a
+                href="https://github.com/anitkumarsingh"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaGithub />
               </a>
             </div>
