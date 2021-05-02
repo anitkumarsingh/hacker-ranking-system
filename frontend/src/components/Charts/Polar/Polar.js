@@ -26,8 +26,8 @@ const Polar = () => {
   };
 
   return (
-    <div style={{ width: '619px', height: 'auto', textAlign: 'center' }}>
-      <PolarArea data={data} height={619} width={619} />
+    <div style={{ width: '315px', height: 'auto', textAlign: 'center' }}>
+      <PolarArea data={data} height={315} width={315} />
     </div>
   );
 };

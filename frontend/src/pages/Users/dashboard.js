@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchHackersList } from '../../redux/actions/hackers';
 import CplusPlusChart from '../../components/Charts/Bar/CompetitivePercentile';
@@ -6,17 +6,29 @@ import DeviceTypeChart from '../../components/Charts/Doughnut/Doughnut';
 import { Col, Row } from 'react-bootstrap';
 import UserTypes from '../../components/Charts/Polar/Polar';
 import HackerTable from '../../components/Table/RecentUpdatedHackers';
+import Message from '../../components/Common/Message';
 
-const Dashboard = () => {
+const Dashboard = ({ location, history }) => {
   const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState({});
+
+  const redirect = userInfo?.isAdmin === true ? '/admin/dashboard' : '/login';
 
   useEffect(() => {
     dispatch(fetchHackersList());
+    const currentLoggedInUser =
+      localStorage.getItem('userInfo') &&
+      JSON.parse(localStorage.getItem('userInfo'));
+    setUserInfo(currentLoggedInUser);
+    if (userInfo && userInfo.isAdmin === false) {
+      history.push('/login');
+    }
   }, [dispatch]);
 
   const { isLoading, error, hackersTypes } = useSelector(
     (state) => state.hackers
   );
+
   let hackersName = [];
   let hackersCPlusPlus = [];
   let deviceType = ['Laptop', 'Tablet', 'Phone'];
@@ -25,6 +37,7 @@ const Dashboard = () => {
   let recentlyUpdatedDates = [];
 
   if (!hackersTypes) return null;
+
   const {
     phoneUsers,
     laptopUsers,
@@ -33,7 +46,6 @@ const Dashboard = () => {
     hackers
   } = hackersTypes;
   deviceTypeUsersCount = [laptopUsers, tabletUsers, phoneUsers];
-  console.log('store hackers', recentlyUpdatedHackers);
 
   if (hackers && hackers.length > 0) {
     hackersCPlusPlus = hackers
@@ -48,36 +60,54 @@ const Dashboard = () => {
     recentlyUpdatedHackers.map((ele) => recentlyUpdatedUsers.push(ele.name));
     recentlyUpdatedHackers.map((d) => recentlyUpdatedDates.push(d.updatedAt));
   }
-  console.log('recer', recentlyUpdatedDates, recentlyUpdatedUsers);
+
   return (
     <div>
-      <Row>
-        <Col md={8}>
-          <h4>Percentile in C++ </h4>
-          <CplusPlusChart
-            labelData={hackersName}
-            value={hackersCPlusPlus}
-            heading="Percentile in C++"
-          />
-        </Col>
-        <Col md={4}>
-          <h4>Device Type </h4>
-          <DeviceTypeChart
-            labelData={deviceType}
-            value={deviceTypeUsersCount}
-            heading="Device Type"
-          />
-        </Col>
-        <Col md={12}>
-          <br />
-          <h4>User Type </h4>
-          <UserTypes />
-        </Col>
-        <Col md={12}>
-          <h4>Recent Updates</h4>
-          <HackerTable data={recentlyUpdatedHackers} />
-        </Col>
-      </Row>
+      {userInfo && userInfo.isAdmin === true ? (
+        <>
+          <Row>
+            <Col md={8}>
+              <div className="mt-3">
+                <h4>Percentile in C++ </h4>
+                <CplusPlusChart
+                  labelData={hackersName}
+                  value={hackersCPlusPlus}
+                  heading="Percentile in C++"
+                />
+              </div>
+            </Col>
+            <Col md={4}>
+              <div className="mt-3">
+                <h4>Device Type </h4>
+                <DeviceTypeChart
+                  labelData={deviceType}
+                  value={deviceTypeUsersCount}
+                  heading="Device Type"
+                />
+              </div>
+            </Col>
+
+            <Col md={12}>
+              <div className="mt-3">
+                <h4>User Type </h4>
+                <UserTypes />
+              </div>
+            </Col>
+            <Col md={12}>
+              <div className="mt-3">
+                <h4>Recent Updates</h4>
+                <HackerTable data={recentlyUpdatedHackers} />
+              </div>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <div className="py-5">
+          <Message>
+            <h5>Not Authorized to access this ? Please login as Admin</h5>
+          </Message>
+        </div>
+      )}
     </div>
   );
 };

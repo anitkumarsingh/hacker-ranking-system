@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import moment from 'moment';
 
 const RecentUpdatedHackers = ({ data }) => {
   return (
@@ -16,7 +17,9 @@ const RecentUpdatedHackers = ({ data }) => {
             data.map((user) => (
               <tr key={user._id}>
                 <td>{user.name}</td>
-                <td>{user.updatedAt}</td>
+                <td>
+                  {moment(user.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
+                </td>
               </tr>
             ))}
         </tbody>

@@ -1,6 +1,5 @@
 import Hackers from '../models/hackers.js';
 import asyncHandler from 'express-async-handler';
-import e from 'express';
 
 const getHackers = asyncHandler(async (req, res) => {
 	const hackers = await Hackers.find({}).sort({ name: 1 });
@@ -54,23 +53,23 @@ const getHackers = asyncHandler(async (req, res) => {
 });
 
 const getTop3Hackers = asyncHandler(async (req, res, next) => {
-	const hackers = await Hackers.find({});
-	let solAccepted = [];
-	hackers.forEach((e) => solAccepted.push(e.solutionsAccepted));
+	// const hackers = await Hackers.find({});
+	// let solAccepted = [];
+	// hackers.forEach((e) => solAccepted.push(e.solutionsAccepted));
 
-	const sortSolAccepted = solAccepted.slice().sort(function (a, b) {
-		return b - a;
-	});
-	const calculateRank = solAccepted.map(function (v) {
-		return sortSolAccepted.indexOf(v) + 1;
-	});
-	console.log('rank', calculateRank, solAccepted, sortSolAccepted);
-	// const hackers = await Hackers.aggregate([
-	// 	// { $unwind: '$cast' },
-	// 	// { $group: { _id: '$cast', solutionsAccepted: { $sum: 1 } } },
-	// 	{ $sort: { solutionsSubmitted: -1 } },
-	// 	{ $limit: 3 }
-	// ]);
+	// const sortSolAccepted = solAccepted.slice().sort(function (a, b) {
+	// 	return b - a;
+	// });
+	// const calculateRank = solAccepted.map(function (v) {
+	// 	return sortSolAccepted.indexOf(v) + 1;
+	// });
+	// console.log('rank', calculateRank, solAccepted, sortSolAccepted);
+	const hackers = await Hackers.aggregate([
+		// { $unwind: '$cast' },
+		// { $group: { _id: '$cast', solutionsAccepted: { $sum: 1 } } },
+		{ $sort: { solutionsSubmitted: -1 } },
+		{ $limit: 3 }
+	]);
 
 	if (hackers) {
 		res.status(200).json(hackers);

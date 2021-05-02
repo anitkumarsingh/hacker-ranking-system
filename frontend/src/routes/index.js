@@ -9,7 +9,7 @@ import Top3Hackers from '../pages/TopHackers';
 import UserProfile from '../pages/Users/Profile';
 import AdminDashboard from '../pages/Users/dashboard';
 import Header from '../components/Blocks/Header';
-import Footer from '../components/Blocks/Footer';
+import Footer from '../components/Blocks/Footer2';
 
 const Main = () => {
   return (

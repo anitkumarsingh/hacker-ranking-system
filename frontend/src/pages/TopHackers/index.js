@@ -29,7 +29,7 @@ const TopHackers = () => {
         </Message>
       ) : (
         <Row>
-          <Col md={2}>
+          <Col md={2} className="py-5">
             <h5>Top 3 Hackers</h5>
           </Col>
 
