@@ -25,14 +25,17 @@ const Home = () => {
           <h2>{error}</h2>
         </Message>
       ) : (
-        <Row>
-          {hackersList &&
-            hackersList.map((hacker) => (
-              <Col sm={12} md={6} lg={4} xl={3} key={hacker._id}>
-                <ProfileCard data={hacker} />
-              </Col>
-            ))}
-        </Row>
+        <>
+          <h3 className="text-muted">Hackers List</h3>
+          <Row>
+            {hackersList &&
+              hackersList.map((hacker) => (
+                <Col sm={12} md={6} lg={4} xl={3} key={hacker._id}>
+                  <ProfileCard data={hacker} />
+                </Col>
+              ))}
+          </Row>
+        </>
       )}
     </div>
   );
