@@ -37,7 +37,7 @@ const Header = () => {
               <LinkContainer to="/doc">
                 <Nav.Link>
                   <FcDocument />
-                  Document
+                  Deployment Doc
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (

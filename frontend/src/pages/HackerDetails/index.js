@@ -75,7 +75,7 @@ const HackerDetails = ({ match }) => {
                 </h2>
               </Col>
               <Col md={2} className="text-center">
-                <Button variant="primary" disabled>
+                <Button variant="primary" disabled className="sign-btn-primary">
                   Edit Profile
                 </Button>
               </Col>
