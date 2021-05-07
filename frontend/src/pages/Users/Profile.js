@@ -16,9 +16,7 @@ const Profile = ({ match, history }) => {
   const [location, setLocation] = useState('');
   const [profileLink, setProfileLink] = useState('');
 
-  const { isLoading, error, hackerDetails } = useSelector(
-    (state) => state.hacker
-  );
+  const { error, hackerDetails } = useSelector((state) => state.hacker);
 
   const {
     isLoading: isLoadingUpdate,
