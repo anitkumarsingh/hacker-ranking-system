@@ -38,9 +38,9 @@ export const updateHacker = (hacker) => async (dispatch, getState) => {
   try {
     dispatch({ type: actionTypes.HACKER_UPDATE_REQUEST, payload: {} });
 
-    const userInfo =
-      localStorage.getItem('userInfo') &&
-      JSON.parse(localStorage.getItem('userInfo'));
+    const {
+      userLogin: { userInfo }
+    } = getState();
 
     const config = {
       headers: {
@@ -48,10 +48,11 @@ export const updateHacker = (hacker) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       }
     };
-    if (!userInfo.token) {
+    if (!userInfo.token && userInfo.id !== hacker._id) {
       dispatch({
         type: actionTypes.HAS_ERROR,
-        error: 'Token not provided.Please login to update your profile'
+        error:
+          'Not Authorized! Token not provided.Please login to update your profile'
       });
     }
     dispatch({ type: actionTypes.IS_LOADING, payload: {} });
