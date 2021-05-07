@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHackerById } from '../../redux/actions/hackers';
+import { Link } from 'react-router-dom';
 import {
   Row,
   Col,
@@ -20,6 +21,7 @@ import CompetitivePercentile from '../../components/Charts/Bar/CompetitivePercen
 
 const HackerDetails = ({ match }) => {
   const dispatch = useDispatch();
+  const hackerId = match.params.id;
   let languages = [];
   let languagesPercentitle = [];
   const { isLoading, error, hackerDetails } = useSelector(
@@ -27,8 +29,8 @@ const HackerDetails = ({ match }) => {
   );
 
   useEffect(() => {
-    dispatch(fetchHackerById(match.params.id));
-  }, [dispatch, match]);
+    dispatch(fetchHackerById(hackerId));
+  }, [dispatch, match, hackerId]);
 
   if (hackerDetails === undefined) return null;
 
@@ -75,8 +77,10 @@ const HackerDetails = ({ match }) => {
                 </h2>
               </Col>
               <Col md={2} className="text-center">
-                <Button variant="primary" disabled className="sign-btn-primary">
-                  Edit Profile
+                <Button variant="primary" className="sign-btn-primary">
+                  <Link to={`/user/profile/edit/${hackerId}`}>
+                    Edit Profile
+                  </Link>
                 </Button>
               </Col>
             </Row>

@@ -1,5 +1,4 @@
 const UpdateThemeForStyle = (themeOptions) => {
-  debugger;
   const html = document.getElementsByTagName('html')[0];
   Object.keys(themeOptions).forEach((property) => {
     if (property === 'name') {

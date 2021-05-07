@@ -23,7 +23,8 @@ const Main = () => {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Registration} />
           <Route path="/top-3-hackers" component={Top3Hackers} />
-          <Route path="/user/profile" component={UserProfile} />
+          {/* <Route path="/user/profile" component={UserProfile} /> */}
+          <Route path="/user/profile/edit/:id" component={UserProfile} />
           <Route path="/admin/dashboard" component={AdminDashboard} />
           <Route path="/doc" component={DeploymentDoc} />
         </Switch>

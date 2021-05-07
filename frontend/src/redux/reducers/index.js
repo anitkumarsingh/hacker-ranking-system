@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
-import hackersReducer, { hackerReducer, top3HackersReducer } from './hackers';
+import hackersReducer, {
+  hackerReducer,
+  top3HackersReducer,
+  updateHackerReducer
+} from './hackers';
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -14,7 +18,8 @@ const rootReducer = combineReducers({
   userRegister: userRegisterReducer,
   top3Hackers: top3HackersReducer,
   users: fetchUsersReducer,
-  settings: fetchWebsiteSettings
+  settings: fetchWebsiteSettings,
+  hackerUpdate: updateHackerReducer
 });
 
 export default rootReducer;

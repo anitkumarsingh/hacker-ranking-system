@@ -5,7 +5,6 @@ export const fetchHackersList = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.IS_LOADING, payload: [] });
     const { data } = await axios.get('/api/hackers');
-    console.log('as', data);
     dispatch({ type: actionTypes.FETCH_HACKERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -26,6 +25,45 @@ export const fetchHackerById = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: actionTypes.HAS_ERROR,
+      payload:
+        error.respose && error.respose.data.message
+          ? error.respose.data.message
+          : error.message
+    });
+  }
+};
+
+export const updateHacker = (hacker) => async (dispatch, getState) => {
+  console.log('update', hacker);
+  try {
+    dispatch({ type: actionTypes.HACKER_UPDATE_REQUEST, payload: {} });
+
+    const userInfo =
+      localStorage.getItem('userInfo') &&
+      JSON.parse(localStorage.getItem('userInfo'));
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    };
+    if (!userInfo.token) {
+      dispatch({
+        type: actionTypes.HAS_ERROR,
+        error: 'Token not provided.Please login to update your profile'
+      });
+    }
+    dispatch({ type: actionTypes.IS_LOADING, payload: {} });
+    const { data } = await axios.put(
+      `/api/hackers/${hacker._id}`,
+      hacker,
+      config
+    );
+    dispatch({ type: actionTypes.HACKER_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.HACKER_UPDATE_FAIL,
       payload:
         error.respose && error.respose.data.message
           ? error.respose.data.message
