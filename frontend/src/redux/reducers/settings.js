@@ -18,7 +18,12 @@ export const updateWebsiteSettings = (state = {}, action) => {
     case actionTypes.SETTINGS_UPDATE_REQUEST:
       return { loading: true };
     case actionTypes.SETTINGS_UPDATE_SUCCESS:
-      return { loading: false, updateWebSettings: action.payload };
+      return {
+        loading: false,
+        updateWebSettings: action.payload,
+        success: true,
+        message: 'Theme has been updated successfully'
+      };
     case actionTypes.SETTINGS_UPDATE_FAIL:
       return { loading: false, error: action.payload };
     default:

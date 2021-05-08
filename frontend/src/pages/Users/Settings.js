@@ -10,7 +10,7 @@ import Loader from '../../components/Common/Loader';
 import Message from '../../components/Common/Message';
 import { actionTypes } from '../../redux/actions';
 
-const Settings = (history) => {
+const Settings = ({ history }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -24,7 +24,7 @@ const Settings = (history) => {
 
   const getSettings = useSelector((state) => state.settings.webSettings);
   const { loading } = useSelector((state) => state.settings);
-  console.log('asa', loading, getSettings);
+
   if (loading === false) {
     const { settings } = getSettings;
     themeValue = settings[0].theme;
@@ -57,13 +57,14 @@ const Settings = (history) => {
         textSecondary
       })
     );
+    history.push('/');
   };
 
   return (
     <>
       <FormContainer>
         <>
-          <h2>Edit Website Settings</h2>
+          <h2>{'Edit Website Settings'}</h2>
           <br />
 
           <Form onSubmit={submitHandler}>
@@ -139,7 +140,11 @@ const Settings = (history) => {
               ></Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
+            <Button
+              type="submit"
+              variant="primary"
+              className="theme-update-btn"
+            >
               Update Theme
             </Button>
           </Form>

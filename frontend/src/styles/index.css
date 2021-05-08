@@ -238,3 +238,23 @@ a:hover {
   background-color: var(--bg-primary) !important;
   border-color: var(--primary);
 }
+.sign-btn-primary a {
+  color: var(--text-primary) !important;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--bg-primary) !important;
+}
+.dropdown-item.hover,
+.dropdown-item:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--primary) !important;
+}
+
+.theme-update-btn {
+  background-color: var(--bg-primary) !important;
+  color: 'white';
+}
