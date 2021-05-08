@@ -82,7 +82,7 @@ const HackerDetails = ({ match }) => {
                   <strong>{name}</strong>
                 </h2>
               </Col>
-              {userInfo && userInfo.id === hackerId && (
+              {userInfo && (
                 <Col md={2} className="text-center">
                   <Button variant="primary" className="sign-btn-primary">
                     <Link to={`/user/profile/edit/${hackerId}`}>
