@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHackerById } from '../../redux/actions/hackers';
 import { Link } from 'react-router-dom';
@@ -22,6 +22,8 @@ import CompetitivePercentile from '../../components/Charts/Bar/CompetitivePercen
 const HackerDetails = ({ match }) => {
   const dispatch = useDispatch();
   const hackerId = match.params.id;
+  const [userInfo, setUserInfo] = useState({});
+
   let languages = [];
   let languagesPercentitle = [];
   const { isLoading, error, hackerDetails } = useSelector(
@@ -30,6 +32,10 @@ const HackerDetails = ({ match }) => {
 
   useEffect(() => {
     dispatch(fetchHackerById(hackerId));
+    const currentLoggedInUser =
+      localStorage.getItem('userInfo') &&
+      JSON.parse(localStorage.getItem('userInfo'));
+    setUserInfo(currentLoggedInUser);
   }, [dispatch, match, hackerId]);
 
   if (hackerDetails === undefined) return null;
@@ -76,13 +82,15 @@ const HackerDetails = ({ match }) => {
                   <strong>{name}</strong>
                 </h2>
               </Col>
-              <Col md={2} className="text-center">
-                <Button variant="primary" className="sign-btn-primary">
-                  <Link to={`/user/profile/edit/${hackerId}`}>
-                    Edit Profile
-                  </Link>
-                </Button>
-              </Col>
+              {userInfo && userInfo.id === hackerId && (
+                <Col md={2} className="text-center">
+                  <Button variant="primary" className="sign-btn-primary">
+                    <Link to={`/user/profile/edit/${hackerId}`}>
+                      Edit Profile
+                    </Link>
+                  </Button>
+                </Col>
+              )}
             </Row>
             <ImLocation />
             Location: {location}

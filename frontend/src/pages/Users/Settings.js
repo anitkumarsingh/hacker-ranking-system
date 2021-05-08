@@ -12,7 +12,7 @@ import { actionTypes } from '../../redux/actions';
 
 const Settings = ({ history }) => {
   const dispatch = useDispatch();
-
+  const [userInfo, setUserInfo] = useState({});
   const [name, setName] = useState('');
   const [primary, setPrimary] = useState('');
   const [bgPrimary, setBgPrimary] = useState('');
@@ -42,6 +42,10 @@ const Settings = ({ history }) => {
     setTextPrimary(themeValue?.textPrimary);
     setTextSecondary(themeValue?.textSecondary);
     setTextAlternate(themeValue?.textAlternate);
+    const currentLoggedInUser =
+      localStorage.getItem('userInfo') &&
+      JSON.parse(localStorage.getItem('userInfo'));
+    setUserInfo(currentLoggedInUser);
   }, [dispatch, themeValue]);
 
   const submitHandler = (e) => {
@@ -57,100 +61,111 @@ const Settings = ({ history }) => {
         textSecondary
       })
     );
+    alert('Theming has been updated! Please refresh the page to apply changes');
     history.push('/');
   };
 
   return (
-    <>
-      <FormContainer>
+    <div>
+      {userInfo && userInfo.isAdmin === true ? (
         <>
-          <h2>{'Edit Website Settings'}</h2>
-          <br />
+          <FormContainer>
+            <>
+              <h2>{'Edit Website Settings'}</h2>
+              <br />
 
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="name">
-              <Form.Label>Theme Name</Form.Label>
-              <Form.Control
-                type="name"
-                placeholder="Enter theme name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+              <Form onSubmit={submitHandler}>
+                <Form.Group controlId="name">
+                  <Form.Label>Theme Name</Form.Label>
+                  <Form.Control
+                    type="name"
+                    placeholder="Enter theme name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="primary">
-              <Form.Label>Primary Color</Form.Label>
-              <Form.Control
-                type="primary"
-                placeholder="Enter Primary Color"
-                value={primary}
-                onChange={(e) => setPrimary(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="primary">
+                  <Form.Label>Primary Color</Form.Label>
+                  <Form.Control
+                    type="primary"
+                    placeholder="Enter Primary Color"
+                    value={primary}
+                    onChange={(e) => setPrimary(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="bgPrimary">
-              <Form.Label>Background Primary Color</Form.Label>
-              <Form.Control
-                type="bgPrimary"
-                placeholder="Enter Your Background Primary Color"
-                value={bgPrimary}
-                onChange={(e) => setBgPrimary(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="bgPrimary">
+                  <Form.Label>Background Primary Color</Form.Label>
+                  <Form.Control
+                    type="bgPrimary"
+                    placeholder="Enter Your Background Primary Color"
+                    value={bgPrimary}
+                    onChange={(e) => setBgPrimary(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="bgSecondary">
-              <Form.Label>Background Secondary Color</Form.Label>
-              <Form.Control
-                type="bgSecondary"
-                placeholder="Enter Secondary Background Color"
-                value={bgSecondary}
-                disabled
-                onChange={(e) => setBgSecondary(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="bgSecondary">
+                  <Form.Label>Background Secondary Color</Form.Label>
+                  <Form.Control
+                    type="bgSecondary"
+                    placeholder="Enter Secondary Background Color"
+                    value={bgSecondary}
+                    disabled
+                    onChange={(e) => setBgSecondary(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="textAlternate">
-              <Form.Label>Text Alternate Color</Form.Label>
-              <Form.Control
-                type="textAlternate"
-                placeholder="Enter Text Alternate Color"
-                value={textAlternate}
-                onChange={(e) => setTextAlternate(e.target.value)}
-                disabled
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="textPrimary">
-              <Form.Label>Text Primary Color</Form.Label>
-              <Form.Control
-                type="textPrimary"
-                placeholder="Enter Text Primary Color"
-                value={textPrimary}
-                onChange={(e) => setTextPrimary(e.target.value)}
-                disabled
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="textSeconday">
-              <Form.Label>Text Secondary Color</Form.Label>
-              <Form.Control
-                type="textSeconday"
-                placeholder="Enter Secondary Text Color"
-                value={textSecondary}
-                onChange={(e) => setTextSecondary(e.target.value)}
-                disabled
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="textAlternate">
+                  <Form.Label>Text Alternate Color</Form.Label>
+                  <Form.Control
+                    type="textAlternate"
+                    placeholder="Enter Text Alternate Color"
+                    value={textAlternate}
+                    onChange={(e) => setTextAlternate(e.target.value)}
+                    disabled
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId="textPrimary">
+                  <Form.Label>Text Primary Color</Form.Label>
+                  <Form.Control
+                    type="textPrimary"
+                    placeholder="Enter Text Primary Color"
+                    value={textPrimary}
+                    onChange={(e) => setTextPrimary(e.target.value)}
+                    disabled
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId="textSeconday">
+                  <Form.Label>Text Secondary Color</Form.Label>
+                  <Form.Control
+                    type="textSeconday"
+                    placeholder="Enter Secondary Text Color"
+                    value={textSecondary}
+                    onChange={(e) => setTextSecondary(e.target.value)}
+                    disabled
+                  ></Form.Control>
+                </Form.Group>
 
-            <Button
-              type="submit"
-              variant="primary"
-              className="theme-update-btn"
-            >
-              Update Theme
-            </Button>
-          </Form>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="theme-update-btn"
+                >
+                  Update Theme
+                </Button>
+              </Form>
+            </>
+          </FormContainer>
         </>
-      </FormContainer>
-    </>
+      ) : (
+        <div className="py-5">
+          <Message>
+            <h5>Not Authorized to access this ? Please login as Admin</h5>
+          </Message>
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -110,7 +110,11 @@ const Profile = ({ match, history }) => {
                 ></Form.Control>
               </Form.Group>
 
-              <Button type="submit" variant="primary">
+              <Button
+                type="submit"
+                variant="primary"
+                className="theme-update-btn"
+              >
                 Update Profile
               </Button>
             </Form>

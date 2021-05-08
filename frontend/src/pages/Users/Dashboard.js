@@ -25,9 +25,7 @@ const Dashboard = ({ location, history }) => {
     }
   }, [dispatch]);
 
-  const { isLoading, error, hackersTypes } = useSelector(
-    (state) => state.hackers
-  );
+  const { hackersTypes } = useSelector((state) => state.hackers);
 
   let hackersName = [];
   let hackersCPlusPlus = [];

@@ -1,5 +1,10 @@
 import React from 'react';
-import { FaHackerrank, FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import {
+  FaHackerrank,
+  FaLinkedinIn,
+  FaGithub,
+  FaFreeCodeCamp
+} from 'react-icons/fa';
 import { SiHackerearth } from 'react-icons/si';
 
 const Footer2 = () => {
@@ -9,8 +14,8 @@ const Footer2 = () => {
         <div className="container">
           <div className="row">
             <div className="col item social">
-              <a href="#/">
-                <FaHackerrank />
+              <a href="https://www.freecodecamp.org/anitkumar">
+                <FaFreeCodeCamp />
               </a>
               <a
                 href="http://www.hackerearth.com/@anitkumar123"
@@ -19,7 +24,7 @@ const Footer2 = () => {
               >
                 <SiHackerearth />
               </a>
-              <a href="#/">
+              <a href="https://www.linkedin.com/in/anit-kumar">
                 <FaLinkedinIn />
               </a>
               <a
