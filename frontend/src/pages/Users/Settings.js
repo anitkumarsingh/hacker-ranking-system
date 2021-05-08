@@ -10,7 +10,7 @@ import Loader from '../../components/Common/Loader';
 import Message from '../../components/Common/Message';
 import { actionTypes } from '../../redux/actions';
 
-const Settings = () => {
+const Settings = (history) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -46,6 +46,17 @@ const Settings = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateWebsiteSetting({
+        name,
+        primary,
+        bgPrimary,
+        bgSecondary,
+        textAlternate,
+        textPrimary,
+        textSecondary
+      })
+    );
   };
 
   return (

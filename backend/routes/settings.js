@@ -5,6 +5,6 @@ import { isAdmin, auth } from '../middleware/auth.js';
 const router = express.Router();
 
 router.route('/').get(settings);
-router.route('/:id').put(auth, updateSettings);
+router.route('/:id').put(auth, isAdmin, updateSettings);
 
 export default router;
