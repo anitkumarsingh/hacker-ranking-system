@@ -9,7 +9,7 @@ import {
   userRegisterReducer,
   fetchUsersReducer
 } from './users';
-import { fetchWebsiteSettings } from './settings';
+import { fetchWebsiteSettings, updateWebsiteSettings } from './settings';
 
 const rootReducer = combineReducers({
   hackers: hackersReducer,
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   top3Hackers: top3HackersReducer,
   users: fetchUsersReducer,
   settings: fetchWebsiteSettings,
+  updateSettings: updateWebsiteSettings,
   hackerUpdate: updateHackerReducer
 });
 
