@@ -12,6 +12,7 @@ const Dashboard = ({ location, history }) => {
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({});
 
+  // eslint-disable-next-line no-unused-vars
   const redirect = userInfo?.isAdmin === true ? '/admin/dashboard' : '/login';
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const Dashboard = ({ location, history }) => {
     if (userInfo && userInfo.isAdmin === false) {
       history.push('/login');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const { hackersTypes } = useSelector((state) => state.hackers);

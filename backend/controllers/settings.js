@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import Setting from '../models/settings.js';
 
 const settings = asyncHandler(async (req, res) => {
-	const websettings = await Setting.find({}).limit(1);
+	const websettings = await Setting.find({}).limit(2);
 	if (websettings) {
 		res.status(200).json({
 			message: 'Setting fetched successfully',
